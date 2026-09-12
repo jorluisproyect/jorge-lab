@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./mobile-catalog.css";
+import MobileDock from "@/components/MobileDock";
 
 export const metadata: Metadata = {
   title: { default: "Jorge Lab | Jorge Luis Añanguren", template: "%s | Jorge Lab" },
@@ -14,5 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="es"><body>{children}</body></html>;
+  return <html lang="es"><body>{children}<MobileDock /></body></html>;
 }
