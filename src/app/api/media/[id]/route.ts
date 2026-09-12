@@ -12,7 +12,9 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
     if (raw instanceof Uint8Array) bytes = raw;
     else if (typeof raw === "string") bytes = Uint8Array.from(Buffer.from(raw.replace(/^\\x/, ""), "hex"));
     else bytes = Uint8Array.from(Buffer.from(raw as ArrayBuffer));
-    return new Response(bytes, { headers: { "Content-Type": rows[0].mime, "Cache-Control": "public, max-age=31536000, immutable" } });
+    const body = new ArrayBuffer(bytes.byteLength);
+    new Uint8Array(body).set(bytes);
+    return new Response(body, { headers: { "Content-Type": rows[0].mime, "Cache-Control": "public, max-age=31536000, immutable" } });
   } catch {
     return new Response("Not found", { status: 404 });
   }
