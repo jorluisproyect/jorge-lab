@@ -1,0 +1,42 @@
+/* Mobile catalog / app-like experience */
+.mobile-dock{display:none}
+
+@media(max-width:760px){
+  body{padding-bottom:76px}
+  .shell{width:min(100% - 24px,1180px)}
+
+  /* Project grids become a visual catalog on phones */
+  .featured-grid,.all-projects-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .project-tile{border-radius:17px;min-width:0;box-shadow:0 14px 34px rgba(0,0,0,.16)}
+  .project-tile:hover{transform:none}
+  .project-tile-image{height:auto;aspect-ratio:1/1;background:radial-gradient(circle at 50% 40%,rgba(38,101,177,.18),transparent 44%),#040a13}
+  .project-tile-image img.contain{padding:12px}
+  .project-tile-image>span{right:7px;top:7px;padding:5px 6px;font-size:6.5px;max-width:76%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .project-tile-copy{padding:12px 11px 13px}
+  .project-tile-copy small{font-size:6.5px;letter-spacing:.11em}
+  .project-tile-copy h3{font-size:15px;line-height:1.08;margin:5px 0 6px;letter-spacing:-.025em}
+  .project-tile-copy p{font-size:8.5px;line-height:1.45;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;min-height:37px}
+  .mini-stack{gap:4px;margin-top:9px;max-height:25px;overflow:hidden}
+  .mini-stack b{font-size:6px;padding:4px 5px}
+  .project-tile-copy>a{display:block;margin-top:11px;font-size:7.5px;color:#7bc6ff}
+
+  /* Home feels less like a desktop page squeezed into a phone */
+  .section{padding:54px 0}
+  .section-heading{align-items:flex-start;margin-bottom:18px}
+  .section-heading h2{font-size:29px}
+  .page-hero{padding:52px 0 28px}
+  .page-hero h1{font-size:43px}
+  .page-hero>p{font-size:11px}
+
+  /* Fixed app-style navigation */
+  .mobile-dock{position:fixed;left:10px;right:10px;bottom:10px;z-index:100;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:7px;border:1px solid rgba(116,165,225,.2);border-radius:18px;background:rgba(4,10,19,.88);backdrop-filter:blur(18px);box-shadow:0 16px 45px rgba(0,0,0,.45)}
+  .mobile-dock a{min-height:48px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#849bb2;font-size:7px;font-weight:650}
+  .mobile-dock a b{font-size:17px;font-weight:500;color:#b8d8f4;line-height:1}
+  .mobile-dock a:active{background:rgba(69,154,242,.12);color:white}
+}
+
+@media(max-width:360px){
+  .featured-grid,.all-projects-grid{gap:8px}
+  .project-tile-copy{padding:10px}
+  .project-tile-copy h3{font-size:14px}
+}
