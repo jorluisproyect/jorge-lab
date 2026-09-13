@@ -5,6 +5,20 @@
   body{padding-bottom:76px}
   .shell{width:min(100% - 24px,1180px)}
 
+  /* Hero mobile: menos zoom, mejor encuadre y más aire alrededor del rostro */
+  .home-hero{min-height:585px}
+  .hero-image img{object-fit:cover;object-position:58% 42%}
+  .home-hero-copy{width:100%;padding:210px 20px 34px 20px;justify-content:flex-end}
+  .hero-image>div{background:linear-gradient(180deg,rgba(2,7,15,.05) 0%,rgba(2,7,15,.18) 28%,rgba(2,7,15,.62) 58%,rgba(2,7,15,.96) 100%),linear-gradient(90deg,rgba(2,7,15,.12),rgba(2,7,15,.03) 60%,rgba(2,7,15,.18))}
+  .availability{font-size:7px;padding:6px 8px}
+  .eyebrow{margin:12px 0 8px}
+  .home-hero h1{font-size:43px;line-height:.96}
+  .home-hero h2{font-size:11px;margin:12px 0 7px}
+  .home-hero-copy>p{font-size:9px;line-height:1.58;max-width:92%}
+  .hero-actions{margin-top:14px}
+  .hero-links{margin-top:10px}
+  .hero-stats{margin-top:18px;padding-top:14px}
+
   /* Project grids become a visual catalog on phones */
   .featured-grid,.all-projects-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .project-tile{border-radius:17px;min-width:0;box-shadow:0 14px 34px rgba(0,0,0,.16)}
@@ -21,9 +35,12 @@
   .project-tile-copy>a{display:block;margin-top:11px;font-size:7.5px;color:#7bc6ff}
 
   /* Home feels less like a desktop page squeezed into a phone */
-  .section{padding:54px 0}
-  .section-heading{align-items:flex-start;margin-bottom:18px}
+  .section{padding:34px 0}
+  .section-heading{align-items:flex-start;margin-bottom:10px}
   .section-heading h2{font-size:29px}
+  .project-group{padding-top:12px!important}
+  .secondary-projects{padding-top:0!important;padding-bottom:30px!important}
+  .featured-grid{margin-bottom:10px}
   .page-hero{padding:52px 0 28px}
   .page-hero h1{font-size:43px}
   .page-hero>p{font-size:11px}
@@ -36,6 +53,9 @@
 }
 
 @media(max-width:360px){
+  .home-hero{min-height:565px}
+  .hero-image img{object-position:57% 40%}
+  .home-hero-copy{padding:195px 17px 30px}
   .featured-grid,.all-projects-grid{gap:8px}
   .project-tile-copy{padding:10px}
   .project-tile-copy h3{font-size:14px}
