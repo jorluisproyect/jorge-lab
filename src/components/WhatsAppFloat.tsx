@@ -3,7 +3,7 @@ export default function WhatsAppFloat() {
   return (
     <a
       className="whatsapp-float"
-      href={`https://wa.me/584129365637?text=${message}`}
+      href={`https://wa.me/584225400361?text=${message}`}
       target="_blank"
       rel="noreferrer"
       aria-label="Contactar a Jorge por WhatsApp"
