@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./mobile-catalog.css";
+import "./tucita-feature.css";
 import "./pwa.css";
 import MobileDock from "@/components/MobileDock";
 import PWARegister from "@/components/PWARegister";

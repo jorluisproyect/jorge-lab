@@ -57,7 +57,15 @@ export async function loadProjects(options?: { includeDrafts?: boolean }) {
   try {
     const sql = getSql();
     const rows = await sql`SELECT id, content, visibility, revision, updated_at FROM portfolio_projects ORDER BY updated_at DESC` as DbRow[];
-    return rows.filter((r) => options?.includeDrafts || r.visibility === "published").map(dbContentToProject);
+    const visible = rows.filter((r) => options?.includeDrafts || r.visibility === "published").map(dbContentToProject);
+    // TUCITA is also shipped with the portfolio so it is visible while the product evolves.
+    // If it is later created in the admin, the Neon record takes precedence (including drafts).
+    const tucita = fallbackProjects.find((p) => p.slug === "tucita");
+    const inDatabase = rows.some((r) =>
+      r.id === "tucita" || str(r.content?.id) === "tucita" ||
+      str(r.content?.title).trim().toLowerCase() === "tucita"
+    );
+    return tucita && !inDatabase ? [tucita, ...visible] : visible;
   } catch (error) {
     console.error("Neon project load failed; using fallback", error);
     return fallbackProjects;

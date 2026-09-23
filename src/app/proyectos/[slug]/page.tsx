@@ -21,6 +21,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
       <ProjectGallery images={project.gallery} name={project.name} mode={project.imageMode} />
     </section>
 
+    {project.slug === "tucita" && <section className="tucita-project-note shell"><span>MI PRODUCTO ACTUAL</span><strong>De TurnaVia a TUCITA: un proyecto vivo.</strong><p>El producto está en desarrollo activo y sus módulos continúan evolucionando. Las imágenes de esta galería son visualizaciones conceptuales de la experiencia propuesta, no capturas verificadas de todas las funciones en producción.</p><div className="tucita-timeline"><div><b>01</b><span>TURNAVIA</span><small>La idea inicial: simplificar reservas.</small></div><div><b>02</b><span>TUCITA</span><small>Una plataforma diseñada para varios rubros.</small></div><div><b>03</b><span>HOY</span><small>Experiencia móvil, operación y expansión del producto.</small></div></div></section>}
+
     <section className="case-grid shell"><article><span>01 / RETO</span><h2>El problema</h2><p>{project.challenge}</p></article><article><span>02 / SOLUCIÓN</span><h2>Lo que construí</h2><p>{project.solution}</p></article><article><span>03 / RESULTADO</span><h2>El resultado</h2><p>{project.outcome}</p></article></section>
 
     {project.features.length > 0 && <section className="detail-features shell"><div><span>FUNCIONES</span><h2>Qué incluye.</h2></div><div className="feature-list">{project.features.map((feature, index) => <article key={feature}><b>{String(index + 1).padStart(2, "0")}</b><h3>{feature}</h3></article>)}</div></section>}

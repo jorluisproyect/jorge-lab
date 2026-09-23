@@ -21,6 +21,24 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "tucita",
+    featured: true,
+    name: "TUCITA",
+    kicker: "PROYECTO ACTUAL · SAAS MULTIRUBRO",
+    category: "SaaS / Gestión de citas",
+    summary: "De TurnaVia a TUCITA: plataforma multirubro de reservas, profesionales, pagos y gestión de negocios de servicios. Mi producto actual, en evolución constante.",
+    description: "TUCITA nació como TurnaVia, una idea para simplificar la reserva de citas, y evolucionó hasta convertirse en una plataforma SaaS multirubro. Su propuesta conecta clientes, profesionales y negocios de servicios mediante agendas, disponibilidad, reservas y herramientas de administración. El producto está en desarrollo activo: estoy perfeccionando su experiencia móvil, los flujos por roles, la gestión de pagos y su preparación comercial para médicos, clínicas, barberías, spas, estudios de uñas y otros rubros. Las imágenes de esta ficha son visualizaciones conceptuales; algunas funciones se encuentran en implementación y pruebas.",
+    image: "/projects/tucita-cover.svg",
+    gallery: ["/projects/tucita-cover.svg", "/projects/tucita-mobile.svg", "/projects/tucita-admin.svg"],
+    imageMode: "cover",
+    status: "Proyecto actual · En evolución",
+    stack: ["Next.js", "TypeScript", "Neon", "PostgreSQL", "Vercel", "Resend", "SaaS", "Mobile-first"],
+    challenge: "Unificar la agenda y la operación de negocios con dinámicas diferentes sin complicar la reserva para sus clientes ni el trabajo de los profesionales.",
+    solution: "Evolucioné TurnaVia hacia TUCITA con una arquitectura de producto multirubro, una experiencia de reserva móvil y flujos diferenciados para cliente, profesional, recepción y administración general.",
+    outcome: "Un producto propio en desarrollo continuo, con una propuesta clara de crecimiento: facilitar reservas y centralizar la operación de negocios de servicios. Los módulos siguen ampliándose y validándose antes de anunciar su disponibilidad general.",
+    features: ["Reservas y calendario de disponibilidad", "Servicios, duración y precios configurables por profesional", "Roles: cliente, profesional, recepción y administración", "Solicitudes de pago y validación de comprobantes", "Paneles para gestión y seguimiento de citas", "Experiencia móvil e instalación como aplicación web", "Correos transaccionales y recordatorios en integración", "Configuración para múltiples rubros y negocios"],
+  },
+  {
     slug: "wordtec",
     featured: true,
     name: "Wordtec",
