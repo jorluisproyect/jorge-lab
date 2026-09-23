@@ -40,7 +40,8 @@ export function dbContentToProject(row: DbRow): Project {
     image: gallery[0] || fallback?.image || "/projects/neurai.png",
     gallery: gallery.length ? gallery : ["/projects/neurai.png"],
     imageMode: (str(c.imageMode, fallback?.imageMode || "cover") === "contain" ? "contain" : "cover"),
-    live: (str(c.website) || fallback?.live || "") || undefined,
+    // TUCITA keeps its Vercel TEST URL; its custom domain is reserved for a later approved launch.
+    live: id === "tucita" ? "https://turnavia.vercel.app" : ((str(c.website) || fallback?.live || "") || undefined),
     status: str(c.status, fallback?.status || "Publicado"),
     stack: arr(c.tags).length ? arr(c.tags) : (fallback?.stack || []),
     challenge: str(c.challenge) || fallback?.challenge || "Convertir una necesidad real en una solución digital clara.",
@@ -58,14 +59,11 @@ export async function loadProjects(options?: { includeDrafts?: boolean }) {
     const sql = getSql();
     const rows = await sql`SELECT id, content, visibility, revision, updated_at FROM portfolio_projects ORDER BY updated_at DESC` as DbRow[];
     const visible = rows.filter((r) => options?.includeDrafts || r.visibility === "published").map(dbContentToProject);
-    // TUCITA is also shipped with the portfolio so it is visible while the product evolves.
-    // If it is later created in the admin, the Neon record takes precedence (including drafts).
+    // Always show the approved TUCITA case study, even if an older admin record is still a draft.
+    // A published Neon record replaces the bundled version when it becomes available.
     const tucita = fallbackProjects.find((p) => p.slug === "tucita");
-    const inDatabase = rows.some((r) =>
-      r.id === "tucita" || str(r.content?.id) === "tucita" ||
-      str(r.content?.title).trim().toLowerCase() === "tucita"
-    );
-    return tucita && !inDatabase ? [tucita, ...visible] : visible;
+    const publishedTucita = visible.some((p) => p.slug === "tucita");
+    return tucita && !publishedTucita ? [tucita, ...visible] : visible;
   } catch (error) {
     console.error("Neon project load failed; using fallback", error);
     return fallbackProjects;

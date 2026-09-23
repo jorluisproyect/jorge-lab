@@ -31,6 +31,7 @@ export const projects: Project[] = [
     image: "/projects/tucita-cover.svg",
     gallery: ["/projects/tucita-cover.svg", "/projects/tucita-mobile.svg", "/projects/tucita-admin.svg"],
     imageMode: "cover",
+    live: "https://turnavia.vercel.app",
     status: "Proyecto actual · En evolución",
     stack: ["Next.js", "TypeScript", "Neon", "PostgreSQL", "Vercel", "Resend", "SaaS", "Mobile-first"],
     challenge: "Unificar la agenda y la operación de negocios con dinámicas diferentes sin complicar la reserva para sus clientes ni el trabajo de los profesionales.",

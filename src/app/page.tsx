@@ -68,7 +68,7 @@ export default async function Home() {
           <h2>Una idea de reservas.<br /><em>Un SaaS para crecer.</em></h2>
           <p className="tucita-spotlight-description">Estoy construyendo <strong>TUCITA</strong>: una plataforma multirubro para organizar citas, profesionales, pagos y servicios. Un producto que evoluciona con cada iteración, desde la experiencia móvil hasta la operación de cada negocio.</p>
           <div className="tucita-pills"><span>Salud</span><span>Barberías</span><span>Bienestar</span><span>Estudios de uñas</span><span>Más rubros</span></div>
-          <div className="tucita-spotlight-actions"><Link className="primary" href="/proyectos/tucita">Explorar TUCITA →</Link><span>Diseño · Desarrollo · Evolución continua</span></div>
+          <div className="tucita-spotlight-actions"><Link className="primary" href="/proyectos/tucita">Explorar TUCITA →</Link><a className="secondary" href="https://turnavia.vercel.app" target="_blank" rel="noreferrer">Abrir TEST en Vercel ↗</a><span>Entorno de pruebas · Evolución continua</span></div>
         </div>
         <Link href="/proyectos/tucita" className="tucita-spotlight-visual" aria-label="Ver el caso de estudio de TUCITA"><img src={tucita.image} alt="Visualización conceptual de TUCITA, plataforma de citas multirubro" /><span>01 / PROYECTO EN CRECIMIENTO</span></Link>
       </section>}

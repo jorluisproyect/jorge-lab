@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
         <h2>TUCITA.<br /><em>Agenda. Gestiona. Crece.</em></h2>
         <p className="tucita-spotlight-description">Mi proyecto actual: una plataforma de citas y gestión para profesionales, clínicas y negocios de servicios. Diseño una experiencia móvil simple y una operación adaptable a distintos rubros.</p>
         <div className="tucita-pills"><span>Next.js</span><span>PostgreSQL</span><span>Mobile-first</span><span>SaaS</span></div>
-        <div className="tucita-spotlight-actions"><Link className="primary" href="/proyectos/tucita">Conocer el proyecto →</Link><span>Desarrollo activo</span></div>
+        <div className="tucita-spotlight-actions"><Link className="primary" href="/proyectos/tucita">Conocer el proyecto →</Link><a className="secondary" href="https://turnavia.vercel.app" target="_blank" rel="noreferrer">Abrir TEST en Vercel ↗</a><span>Desarrollo activo</span></div>
       </div>
       <Link href="/proyectos/tucita" className="tucita-spotlight-visual" aria-label="Ver el proyecto TUCITA"><img src={tucita.image} alt="Diseño conceptual de la plataforma TUCITA" /><span>DESTACADO / PROYECTO ACTUAL</span></Link>
     </section>}
