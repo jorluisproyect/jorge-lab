@@ -26,7 +26,8 @@ export function dbContentToProject(row: DbRow): Project {
   const c = row.content || {};
   const id = str(c.id, row.id);
   const fallback = fallbackProjects.find((p) => p.slug === id);
-  const gallery = imageList(c, fallback);
+  // Keep the approved TUCITA gallery consistent even when an older Neon record has SVG images.
+  const gallery = id === "tucita" && fallback ? fallback.gallery : imageList(c, fallback);
   const category = str(c.category, fallback?.category || "Proyecto digital");
   const featuredRaw = c.featured;
   const featured = featuredRaw === true || featuredRaw === "yes" || (featuredRaw === "auto" && Boolean(fallback?.featured));
