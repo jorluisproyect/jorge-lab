@@ -25,12 +25,157 @@ const tech = ["Next.js", "React", "TypeScript", "Tailwind", "PostgreSQL", "Neon"
 export default async function Home() {
   const projects = await loadProjects();
   const definitions = [
-    { name: "Interfaces web", tools: ["React", "Next.js", "TypeScript"], slugs: ["wordtec", "wilyu-market", "gm-consultores", "adri-nails", "sweetsfish", "tucita", "inventra", "vyra", "chispa", "mi-bolsillo", "cotizador", "nevzok-vault"] },
-    { name: "Datos y sistemas", tools: ["PostgreSQL", "Neon", "Drizzle", "SQLite", "IndexedDB"], slugs: ["wordtec", "tucita", "inventra", "vyra", "chispa", "mi-bolsillo", "cotizador", "nevzok-vault", "nova"] },
-    { name: "IA local y voz", tools: ["Python", "PySide6", "Ollama"], slugs: ["nova"] },
-    { name: "Publicación web", tools: ["Vercel", "Netlify", "GitHub"], slugs: ["wordtec", "wilyu-market", "gm-consultores", "adri-nails", "sweetsfish", "neurai-solutek", "tucita"] },
-  ];
-  const areas = definitions.map(({ name, tools, slugs }) => ({ name, tools, projects: slugs.flatMap((slug) => {
+  {
+    "name": "VS Code",
+    "icon": "vscode",
+    "slugs": [],
+    "note": "Editor de trabajo · Vinculación de proyectos pendiente."
+  },
+  {
+    "name": "Terminal",
+    "icon": "terminal",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "cotizador",
+      "nevzok-vault"
+    ],
+    "note": "Ejecución local, compilación y revisión de proyectos."
+  },
+  {
+    "name": "Git / GitHub",
+    "icon": "git",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "nevzok-vault",
+      "gm-consultores",
+      "sweetsfish",
+      "neurai-solutek"
+    ]
+  },
+  {
+    "name": "Vercel",
+    "icon": "vercel",
+    "slugs": [
+      "tucita",
+      "wilyu-market",
+      "sweetsfish"
+    ]
+  },
+  {
+    "name": "APIs",
+    "icon": "api",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "cotizador",
+      "nevzok-vault",
+      "nova",
+      "wilyu-market"
+    ],
+    "note": "Rutas de servidor e integraciones presentes en el código; estado detallado en cada ficha."
+  },
+  {
+    "name": "n8n",
+    "icon": "n8n",
+    "slugs": [
+      "vyra"
+    ],
+    "note": "VYRA incluye lectura de workflows y ejecuciones. La integración real con WhatsApp sigue pendiente."
+  },
+  {
+    "name": "Next.js",
+    "icon": "nextjs",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "cotizador",
+      "nevzok-vault",
+      "chispa",
+      "sweetsfish",
+      "neurai-solutek"
+    ]
+  },
+  {
+    "name": "React",
+    "icon": "react",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "cotizador",
+      "nevzok-vault",
+      "chispa",
+      "sweetsfish",
+      "neurai-solutek",
+      "wilyu-market",
+      "gm-consultores"
+    ]
+  },
+  {
+    "name": "TypeScript",
+    "icon": "typescript",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "cotizador",
+      "nevzok-vault",
+      "chispa",
+      "sweetsfish",
+      "neurai-solutek",
+      "wilyu-market",
+      "gm-consultores"
+    ]
+  },
+  {
+    "name": "PostgreSQL",
+    "icon": "postgresql",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "cotizador",
+      "nevzok-vault",
+      "chispa",
+      "sweetsfish"
+    ]
+  },
+  {
+    "name": "Neon",
+    "icon": "neon",
+    "slugs": [
+      "tucita",
+      "inventra",
+      "vyra",
+      "mi-bolsillo",
+      "cotizador",
+      "nevzok-vault",
+      "sweetsfish"
+    ]
+  },
+  {
+    "name": "Supabase",
+    "icon": "supabase",
+    "slugs": [
+      "wilyu-market",
+      "neurai-solutek"
+    ]
+  }
+];
+  const areas = definitions.map(({ name, icon, slugs, note }) => ({ name, icon: `/tools/${icon}.svg`, tools: [], note, projects: slugs.flatMap((slug) => {
     const project = projects.find((item) => item.slug === slug);
     return project ? [{ slug: project.slug, name: project.name }] : [];
   }) }));
