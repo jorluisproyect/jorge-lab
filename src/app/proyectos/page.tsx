@@ -19,9 +19,9 @@ export default async function ProjectsPage() {
   return <main><div className="page-glow"/><SiteHeader />
     <section className="page-hero shell"><span>PORTAFOLIO</span><h1>Proyectos que muestran <em>cómo resuelvo.</em></h1><p>Sitios web y productos propios.</p></section>
     {tucita && <TucitaSpotlight />}
-    <PrivateProjects />
     <section className="section shell project-group"><div className="section-heading"><div><span>DESTACADOS</span><h2>Casos principales.</h2></div></div><div className="all-projects-grid">{featured.map((project) => <ProjectCard project={project} key={project.slug} />)}</div></section>
-    <section className="section shell project-group secondary-projects"><div className="section-heading"><div><span>MÁS TRABAJO</span><h2>Proyectos y experimentos.</h2></div></div><div className="all-projects-grid">{others.map((project) => <ProjectCard project={project} key={project.slug} />)}</div></section>
+    <PrivateProjects />
+    <section className="section shell project-group secondary-projects"><div className="section-heading"><div><span>LABORATORIO</span><h2>Experimentos.</h2></div></div><div className="all-projects-grid">{others.map((project) => <ProjectCard project={project} key={project.slug} />)}</div></section>
     <SiteFooter />
   </main>;
 }

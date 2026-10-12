@@ -21,7 +21,8 @@ export const privateProjects: Project[] = cases.map((item) => ({
   kicker: item.category.toUpperCase(),
   description: `${item.summary} ${item.scope}`,
   logo: `/projects/logos/${item.slug}.${["inventra", "mi-bolsillo", "cotizador"].includes(item.slug) ? "svg" : "png"}`,
-  image: item.slug === "tucita" ? "/projects/tucita-publica.jpg" : `/projects/logos/${item.slug}.${["inventra", "mi-bolsillo", "cotizador"].includes(item.slug) ? "svg" : "png"}`,
+  image: item.slug === "tucita" ? "/projects/tucita-publica.jpg" : `/projects/references/${item.slug}.${item.slug === "nova" ? "png" : "jpg"}`,
+  referenceCaption: item.slug === "tucita" ? "Captura de la página pública" : item.slug === "inventra" ? "Vista de referencia con datos de ejemplo" : item.slug === "nova" ? "Interfaz local con historial vacío" : "Pantalla de acceso · Sin datos privados",
   imageMode: "contain",
   gallery: [],
   challenge: item.summary,
@@ -32,5 +33,14 @@ export const privateProjects: Project[] = cases.map((item) => ({
 
 // Public editorial cases always use curated content, regardless of older CMS records.
 export function withPrivateProjects(projects: Project[]) {
-  return [...projects.filter((p) => !privateProjects.some((item) => item.slug === p.slug)), ...privateProjects];
+  const publicReferences = ["adri-nails", "wordtec", "wilyu-market", "gm-consultores", "sweetsfish", "neurai-solutek"];
+  const publicProjects = projects.filter((p) => !privateProjects.some((item) => item.slug === p.slug)).map((p) => {
+    const image = `/projects/references/${p.slug}.jpg`;
+    return {
+      ...p,
+      ...(publicReferences.includes(p.slug) ? { image, gallery: [image], imageMode: "contain" as const, referenceCaption: "Captura de la página pública" } : {}),
+      ...(p.slug === "adri-nails" ? { name: "Adri Nails Studio", featured: true } : {}),
+    };
+  });
+  return [...publicProjects, ...privateProjects];
 }
