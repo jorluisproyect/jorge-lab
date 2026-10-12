@@ -29,7 +29,8 @@ export default async function Home() {
     "name": "VS Code",
     "icon": "vscode",
     "slugs": [],
-    "note": "Editor de trabajo · Vinculación de proyectos pendiente."
+    "reportedCoverage": 90,
+    "note": "Mi editor habitual: lo utilizo en aproximadamente el 90% de mis proyectos."
   },
   {
     "name": "Terminal",
@@ -175,7 +176,7 @@ export default async function Home() {
     ]
   }
 ];
-  const areas = definitions.map(({ name, icon, slugs, note }) => ({ name, icon: `/tools/${icon}.svg`, tools: [], note, projects: slugs.flatMap((slug) => {
+  const areas = definitions.map(({ name, icon, slugs, note, reportedCoverage }) => ({ name, icon: `/tools/${icon}.svg`, tools: [], note, reportedCoverage, projects: slugs.flatMap((slug) => {
     const project = projects.find((item) => item.slug === slug);
     return project ? [{ slug: project.slug, name: project.name }] : [];
   }) }));
