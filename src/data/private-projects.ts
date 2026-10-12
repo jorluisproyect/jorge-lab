@@ -34,11 +34,13 @@ export const privateProjects: Project[] = cases.map((item) => ({
 // Public editorial cases always use curated content, regardless of older CMS records.
 export function withPrivateProjects(projects: Project[]) {
   const publicReferences = ["adri-nails", "wordtec", "wilyu-market", "gm-consultores", "sweetsfish", "neurai-solutek"];
+  const experimentReferences: Record<string, string> = { lunatrade: "/projects/lunatrade.png", "origen-infinito": "/projects/origen.png" };
   const publicProjects = projects.filter((p) => !privateProjects.some((item) => item.slug === p.slug)).map((p) => {
     const image = `/projects/references/${p.slug}.jpg`;
     return {
       ...p,
       ...(publicReferences.includes(p.slug) ? { image, gallery: [image], imageMode: "contain" as const, referenceCaption: "Captura de la página pública" } : {}),
+      ...(experimentReferences[p.slug] ? { image: experimentReferences[p.slug], gallery: [experimentReferences[p.slug]], referenceCaption: "Imagen conceptual de referencia" } : {}),
       ...(p.slug === "adri-nails" ? { name: "Adri Nails Studio", featured: true } : {}),
     };
   });
