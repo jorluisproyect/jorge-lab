@@ -1,4 +1,6 @@
 export type Project = {
+  privateDemo?: boolean;
+  role?: string;
   slug: string;
   name: string;
   kicker: string;

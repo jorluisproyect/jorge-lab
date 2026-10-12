@@ -1,5 +1,6 @@
 import { projects as fallbackProjects, type Project } from "@/data/projects";
 import { getSql } from "@/lib/db";
+import { withPrivateProjects } from "@/data/private-projects";
 
 type DbRow = {
   id: string;
@@ -55,7 +56,7 @@ export function dbContentToProject(row: DbRow): Project {
 }
 
 export async function loadProjects(options?: { includeDrafts?: boolean }) {
-  if (!process.env.DATABASE_URL) return fallbackProjects;
+  if (!process.env.DATABASE_URL) return withPrivateProjects(fallbackProjects);
   try {
     const sql = getSql();
     const rows = await sql`SELECT id, content, visibility, revision, updated_at FROM portfolio_projects ORDER BY updated_at DESC` as DbRow[];
@@ -64,10 +65,10 @@ export async function loadProjects(options?: { includeDrafts?: boolean }) {
     // A published Neon record replaces the bundled version when it becomes available.
     const tucita = fallbackProjects.find((p) => p.slug === "tucita");
     const publishedTucita = visible.some((p) => p.slug === "tucita");
-    return tucita && !publishedTucita ? [tucita, ...visible] : visible;
+    return withPrivateProjects(tucita && !publishedTucita ? [tucita, ...visible] : visible);
   } catch (error) {
     console.error("Neon project load failed; using fallback", error);
-    return fallbackProjects;
+    return withPrivateProjects(fallbackProjects);
   }
 }
 

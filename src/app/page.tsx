@@ -2,6 +2,7 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
+import PrivateProjects from "@/components/PrivateProjects";
 import { loadProjects } from "@/lib/projects-db";
 
 const services = [
@@ -31,7 +32,7 @@ export const dynamic = "force-dynamic";
 const tech = ["Next.js", "React", "TypeScript", "Tailwind", "PostgreSQL", "Neon", "Vercel", "Supabase", "GitHub", "APIs", "n8n", "IA"];
 export default async function Home() {
   const projects = await loadProjects();
-  const featuredProjects = projects.filter((project) => project.featured && project.slug !== "tucita");
+  const featuredProjects = projects.filter((project) => project.featured && !project.privateDemo);
   const tucita = projects.find((project) => project.slug === "tucita");
   return (
     <main>
@@ -68,7 +69,7 @@ export default async function Home() {
           <h2>Una idea de reservas.<br /><em>Un SaaS para crecer.</em></h2>
           <p className="tucita-spotlight-description">Estoy construyendo <strong>TUCITA</strong>: una plataforma multirubro para organizar citas, profesionales, pagos y servicios. Un producto que evoluciona con cada iteración, desde la experiencia móvil hasta la operación de cada negocio.</p>
           <div className="tucita-pills"><span>Salud</span><span>Barberías</span><span>Bienestar</span><span>Estudios de uñas</span><span>Más rubros</span></div>
-          <div className="tucita-spotlight-actions"><Link className="primary" href="/proyectos/tucita">Explorar TUCITA →</Link><a className="secondary" href="https://turnavia.vercel.app" target="_blank" rel="noreferrer">Abrir TEST en Vercel ↗</a><span>Entorno de pruebas · Evolución continua</span></div>
+          <div className="tucita-spotlight-actions"><Link className="primary" href="/proyectos/tucita">Explorar TUCITA →</Link><span>Proyecto privado / Demo conceptual</span></div>
         </div>
         <Link href="/proyectos/tucita" className="tucita-spotlight-visual" aria-label="Ver el caso de estudio de TUCITA"><img src={tucita.image} alt="Visualización conceptual de TUCITA, plataforma de citas multirubro" /><span>01 / PROYECTO EN CRECIMIENTO</span></Link>
       </section>}
@@ -78,6 +79,7 @@ export default async function Home() {
         <div className="featured-grid">{featuredProjects.map((project) => <ProjectCard project={project} key={project.slug} />)}</div>
       </section>
 
+      <PrivateProjects preview />
       <section className="section shell">
         <div className="section-heading"><div><span>CÓMO TRABAJO</span><h2>De la necesidad a una solución publicada.</h2></div></div>
         <div className="process-grid">{process.map(([n, title, text]) => <article key={title}><span>{n}</span><h3>{title}</h3><p>{text}</p></article>)}</div>

@@ -8,6 +8,7 @@ import PWARegister from "@/components/PWARegister";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jorge-lab.vercel.app"),
   title: { default: "Jorge Lab | Jorge Luis Añanguren", template: "%s | Jorge Lab" },
   description: "Portafolio de Jorge Luis Añanguren: desarrollo web, IA, automatización, datos, e-commerce y soluciones digitales.",
   keywords: ["Jorge Luis Añanguren", "desarrollo web", "React", "Next.js", "automatización", "IA", "portafolio", "remote developer"],
