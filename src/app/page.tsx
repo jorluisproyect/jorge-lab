@@ -1,9 +1,7 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import ProjectCard from "@/components/ProjectCard";
-import PrivateProjects from "@/components/PrivateProjects";
-import TucitaSpotlight from "@/components/TucitaSpotlight";
+import ExperienceGraph from "@/components/ExperienceGraph";
 import { loadProjects } from "@/lib/projects-db";
 
 const services = [
@@ -21,20 +19,21 @@ const process = [
   ["05", "Publicar", "Preparo repositorio, despliegue y una base clara para seguir iterando."],
 ];
 
-const capabilities = [
-  ["Frontend", "Next.js · React · TypeScript", "Interfaces responsive, navegación, formularios y experiencias pensadas para conversión."],
-  ["Datos", "PostgreSQL · Neon · Supabase", "Persistencia, consultas, estados, paneles privados y flujos de información."],
-  ["Automatización", "APIs · Webhooks · n8n · IA", "Conexión de herramientas y reducción de tareas manuales mediante flujos digitales."],
-  ["Entrega", "GitHub · Vercel · Netlify", "Versionado, publicación y mantenimiento de proyectos listos para compartir."],
-];
-
 export const dynamic = "force-dynamic";
 
 const tech = ["Next.js", "React", "TypeScript", "Tailwind", "PostgreSQL", "Neon", "Vercel", "Supabase", "GitHub", "APIs", "n8n", "IA"];
 export default async function Home() {
   const projects = await loadProjects();
-  const featuredProjects = projects.filter((project) => project.featured && !project.privateDemo);
-  const tucita = projects.find((project) => project.slug === "tucita");
+  const definitions = [
+    { name: "Interfaces web", tools: ["React", "Next.js", "TypeScript"], slugs: ["wordtec", "wilyu-market", "gm-consultores", "adri-nails", "sweetsfish", "tucita", "inventra", "vyra", "chispa", "mi-bolsillo", "cotizador", "nevzok-vault"] },
+    { name: "Datos y sistemas", tools: ["PostgreSQL", "Neon", "Drizzle", "SQLite", "IndexedDB"], slugs: ["wordtec", "tucita", "inventra", "vyra", "chispa", "mi-bolsillo", "cotizador", "nevzok-vault", "nova"] },
+    { name: "IA local y voz", tools: ["Python", "PySide6", "Ollama"], slugs: ["nova"] },
+    { name: "Publicación web", tools: ["Vercel", "Netlify", "GitHub"], slugs: ["wordtec", "wilyu-market", "gm-consultores", "adri-nails", "sweetsfish", "neurai-solutek", "tucita"] },
+  ];
+  const areas = definitions.map(({ name, tools, slugs }) => ({ name, tools, projects: slugs.flatMap((slug) => {
+    const project = projects.find((item) => item.slug === slug);
+    return project ? [{ slug: project.slug, name: project.name }] : [];
+  }) }));
   return (
     <main>
       <div className="page-glow" />
@@ -63,22 +62,10 @@ export default async function Home() {
 
       <div className="tech-marquee"><div>{[...tech, ...tech].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div></div>
 
-      {tucita && <TucitaSpotlight />}
-
-      <section className="section shell">
-        <div className="section-heading"><div><span>PROYECTOS DESTACADOS</span><h2>Primero, el trabajo más fuerte.</h2></div><Link href="/proyectos">Ver portafolio completo →</Link></div>
-        <div className="featured-grid">{featuredProjects.map((project) => <ProjectCard project={project} key={project.slug} />)}</div>
-      </section>
-
-      <PrivateProjects preview />
+      <ExperienceGraph areas={areas} />
       <section className="section shell">
         <div className="section-heading"><div><span>CÓMO TRABAJO</span><h2>De la necesidad a una solución publicada.</h2></div></div>
         <div className="process-grid">{process.map(([n, title, text]) => <article key={title}><span>{n}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
-      </section>
-
-      <section className="section shell">
-        <div className="section-heading"><div><span>STACK APLICADO</span><h2>Herramientas con un propósito.</h2></div></div>
-        <div className="capability-grid">{capabilities.map(([title, stack, text]) => <article key={title}><small>{title}</small><h3>{stack}</h3><p>{text}</p></article>)}</div>
       </section>
 
       <section className="section shell">
