@@ -3,6 +3,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectCard from "@/components/ProjectCard";
 import PrivateProjects from "@/components/PrivateProjects";
+import TucitaSpotlight from "@/components/TucitaSpotlight";
 import { loadProjects } from "@/lib/projects-db";
 
 const services = [
@@ -62,17 +63,7 @@ export default async function Home() {
 
       <div className="tech-marquee"><div>{[...tech, ...tech].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div></div>
 
-      {tucita && <section className="tucita-spotlight shell" aria-label="TUCITA, mi proyecto actual">
-        <div className="tucita-spotlight-copy">
-          <span className="tucita-live"><i /> PROYECTO ACTUAL · EN CONSTANTE EVOLUCIÓN</span>
-          <p className="tucita-eyebrow">DE TURNAVIA A TUCITA / PRODUCTO PROPIO</p>
-          <h2>Una idea de reservas.<br /><em>Un SaaS para crecer.</em></h2>
-          <p className="tucita-spotlight-description">Estoy construyendo <strong>TUCITA</strong>: una plataforma multirubro para organizar citas, profesionales, pagos y servicios. Un producto que evoluciona con cada iteración, desde la experiencia móvil hasta la operación de cada negocio.</p>
-          <div className="tucita-pills"><span>Salud</span><span>Barberías</span><span>Bienestar</span><span>Estudios de uñas</span><span>Más rubros</span></div>
-          <div className="tucita-spotlight-actions"><Link className="primary" href="/proyectos/tucita">Explorar TUCITA →</Link><span>Proyecto privado / Demo conceptual</span></div>
-        </div>
-        <Link href="/proyectos/tucita" className="tucita-spotlight-visual" aria-label="Ver el caso de estudio de TUCITA"><img src={tucita.image} alt="Visualización conceptual de TUCITA, plataforma de citas multirubro" /><span>01 / PROYECTO EN CRECIMIENTO</span></Link>
-      </section>}
+      {tucita && <TucitaSpotlight />}
 
       <section className="section shell">
         <div className="section-heading"><div><span>PROYECTOS DESTACADOS</span><h2>Primero, el trabajo más fuerte.</h2></div><Link href="/proyectos">Ver portafolio completo →</Link></div>

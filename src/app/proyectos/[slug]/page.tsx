@@ -4,6 +4,7 @@ import { privateBadge } from "@/data/private-projects";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ProjectGallery from "@/components/ProjectGallery";
+import PrivateProjectDetail from "@/components/PrivateProjectDetail";
 import { loadProjects } from "@/lib/projects-db";
 
 export const dynamic = "force-dynamic";
@@ -13,6 +14,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   const projects = await loadProjects();
   const project = projects.find((item) => item.slug === slug);
   if (!project) notFound();
+  if (project.privateDemo) return <PrivateProjectDetail project={project} />;
   const currentIndex = projects.findIndex((item) => item.slug === slug);
   const next = projects[(currentIndex + 1) % projects.length];
 

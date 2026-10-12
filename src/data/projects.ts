@@ -1,5 +1,6 @@
 export type Project = {
   privateDemo?: boolean;
+  logo?: string;
   role?: string;
   slug: string;
   name: string;
